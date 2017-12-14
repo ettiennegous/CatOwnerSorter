@@ -1,4 +1,4 @@
-# CatOwnerSorter
+# Cat owner sorter
 
 A sample console app written in F# that 
 - Calls some JSON data
