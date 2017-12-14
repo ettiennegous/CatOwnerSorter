@@ -7,8 +7,6 @@ let apiUrl = "http://agl-developer-test.azurewebsites.net/people.json"
 [<Literal>]
 let petTypesToFind = "Cat"
 type OwnersAndCats = JsonProvider<apiUrl> //Can get inferred type from this command but it makes DEV very slow as its keeps fetching and dynamically typing
-//type OwnersAndCats = JsonProvider<"""[{"name": "Bob","gender": "Male","age": 23,"pets": [{"name": "Garfield","type": "Cat"},{"name": "Fido","type": "Dog"}]}]""">
-
 
 [<EntryPoint>]
 let main argv =
