@@ -21,19 +21,13 @@ let main argv =
 
     for gender in genders do
        printfn "%s" gender
-       //Reduce original collection for each gender
-       let ownersOfGender = responseData
-                              |> Seq.filter(fun owner -> owner.Gender = gender)
-                              |> Seq.toArray 
-       let allCatsByGender:string[] = [||]
-       for owner in ownersOfGender do
-          //Get cats of specific owner
-          let catsOfOwnerOfGender = owner.Pets
-                                        |> Seq.filter(fun pet -> pet.Type = petTypesToFind)
-                                        |> Seq.map(fun cat -> cat.Name)
-                                        |> Seq.toArray 
-          //let allCatsByGender = Array.append catsOfOwnerOfGender allCatsByGender
-          for cat in catsOfOwnerOfGender do
-             printfn "-%s" cat
+       let petsForGender = responseData
+                              |> Seq.filter(fun owner -> owner.Gender = gender) //Reduce original collection for each gender, 
+                              |> Seq.collect(fun owner -> owner.Pets //aggregate the many results with collect, Its like SelectMany in Linq
+                                                          |> Seq.filter(fun pet -> pet.Type = petTypesToFind) //filter them by cats, 
+                                                          |> Seq.map(fun pet -> pet.Name)) //Get the name of each cat
+                              |> Seq.sort
+       for cat in petsForGender do
+          Console.WriteLine(cat)
     let pause = Console.ReadLine()
     0 // return an integer exit code
