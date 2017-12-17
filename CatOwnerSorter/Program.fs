@@ -8,7 +8,7 @@ let petTypesToFind = "Cat"
 
 [<EntryPoint>]
 let main argv =
-    let data = Datasource.loadData
+    let data = Datasource.loadData Datasource.apiUrl
     let genders = data |> BusinessLogic.getGenders
     for gender in genders do 
        printfn "%s" gender

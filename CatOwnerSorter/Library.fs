@@ -8,7 +8,9 @@ module Datasource =
    let petTypesToFind = "Cat"
    type OwnersAndCats = JsonProvider<apiUrl> //Can get inferred type from this command but it makes DEV very slow as its keeps fetching and dynamically typing
 
-   let loadData = OwnersAndCats.Load(apiUrl)
+   let loadData (data:string) = OwnersAndCats.Load(data)
+
+   let parseData (data:string) = OwnersAndCats.Parse(data)
 
 module BusinessLogic  =
    let getGenders collection = collection //Group owners collection by gender and get unique genders
