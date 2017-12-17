@@ -35,6 +35,6 @@ let ``Sort Cats`` () =
 [<Test>]
 let ``Aggregate Cats`` () =
    let data = Datasource.parseData testData
-   let sortedExpectedData = ["Happy"; "Grumpy"; "Garfield"]
+   let aggregatedExpectedData = ["Happy"; "Grumpy"; "Garfield"]
    let aggregatedCats = BusinessLogic.aggregateCats data
-   Assert.AreEqual(sortedExpectedData, aggregatedCats)
+   Assert.AreEqual(aggregatedExpectedData, aggregatedCats)
